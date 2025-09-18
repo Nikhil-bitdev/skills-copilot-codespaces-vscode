@@ -25,15 +25,15 @@ app.get('/comments/:id', (req, res) => {
     } else {
         res.status(404).send('Comment not found');
     }
-});
+}); // <-- This closes the previous route handler
 
 // Create a new comment
 app.post('/comments', (req, res) => {
     const newComment = {
         id: uuidv4(),
-        text: req.body.text,    
+        text: req.body.text,
+        // ...other properties...
     };
     comments.push(newComment);
     res.status(201).json(newComment);
 });
-        
