@@ -25,15 +25,22 @@ app.get('/comments/:id', (req, res) => {
     } else {
         res.status(404).send('Comment not found');
     }
-}); // <-- This closes the previous route handler
+});
 
 // Create a new comment
 app.post('/comments', (req, res) => {
     const newComment = {
         id: uuidv4(),
         text: req.body.text,
-        // ...other properties...
+        // Add other properties as needed
     };
-    comments.push(newComment);
+    // Save the new comment (example: push to an array or save to DB)
+    comments.push(newComment); // Make sure 'comments' is defined elsewhere
     res.status(201).json(newComment);
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
